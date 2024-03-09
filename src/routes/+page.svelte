@@ -2,18 +2,6 @@
     import StatInput from '$lib/components/statInput.svelte';
     import SatInput from '$lib/components/satInput.svelte';
     import Map from '$lib/components/map.svelte';
-    type Satellite = {
-        id: number;
-        T: string;
-        n: number;
-        h: number;
-        start: number;
-    };
-    type Station = {
-        id: number;
-        theta: number;
-        phi: number;
-    };
     let satellites: Satellite[] = [];
     let stations: Station[] = [];
     let newSat: any = {

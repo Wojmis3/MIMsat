@@ -1,4 +1,5 @@
 <script lang="ts">
+    
     export let station: Station;
     export let adding = false;
 
