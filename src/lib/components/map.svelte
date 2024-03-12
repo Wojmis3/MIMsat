@@ -1,5 +1,6 @@
 <script lang='ts'>
-	import SatCover from "./satCover.svelte";
+	import Countries from "./countries.svelte";
+import SatCover from "./satCover.svelte";
 	import StatCover from "./statCover.svelte";
 
  
@@ -24,19 +25,16 @@
 </div>
 <svg width="3600" height="1800" viewBox="0 0 360 180">
     <g transform="translate(180, 90)">
+        <Countries />
         <line x1="-180" y1="-90" x2="180" y2="-90" stroke="black" />
         <line x1="-180" y1="90" x2="180" y2="90" stroke="black" />
         <line x1="-180" y1="-90" x2="-180" y2="90" stroke="black" />
         <line x1="180" y1="-90" x2="180" y2="90" stroke="black" />
-        <line x1="0" y1="0" x2="90" y2="0" stroke="black" stroke-width='0.2'/>
-        <line x1="0" y1="0" x2="0" y2="45" stroke="black" stroke-width='0.2'/>
-        <line x1="0" y1="0" x2="-90" y2="0" stroke="black" stroke-width='0.2'/>
-        <line x1="0" y1="0" x2="0" y2="-45" stroke="black" stroke-width='0.2'/>
         {#each satellites as sat}
-            <SatCover {sat} {width} {singleOrbit}/>
+        <SatCover {sat} {width} {singleOrbit}/>
         {/each}
         {#if previewSat}
-            <SatCover sat={newSat} {width} {singleOrbit}/>
+        <SatCover sat={newSat} {width} {singleOrbit}/>
         {/if}
         {#each stations as station}
         <StatCover {station} {minuteDelay} {stationN} />
@@ -44,4 +42,9 @@
         {#if previewStation}
         <StatCover station={newStation} {minuteDelay} {stationN} />
         {/if}
+        <line x1="0" y1="0" x2="90" y2="0" stroke="black" stroke-width='0.2'/>
+        <line x1="0" y1="0" x2="0" y2="45" stroke="black" stroke-width='0.2'/>
+        <line x1="0" y1="0" x2="-90" y2="0" stroke="black" stroke-width='0.2'/>
+        <line x1="0" y1="0" x2="0" y2="-45" stroke="black" stroke-width='0.2'/>
+    </g>
 </svg>
