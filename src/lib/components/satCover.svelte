@@ -2,6 +2,8 @@
     import { polarToCartesian, rotateY, rotateZ, rotateX, cartesianToPolar, polarToEarth } from '../util'
     export let sat: {id: number, T: string, n: number, h: number, start: number} | {T: string, n: number, start: number};
     export let singleOrbit: boolean = true
+    export let singleTimeOrbit: boolean = false
+    export let showDots: boolean = true
     //Ie minutes in a day
     let timeSteps = 24*60*3
     //Ie minutes in an orbit
@@ -69,6 +71,7 @@
         }
     }
 </script>
+{#if showDots}
 
 <g class="sat traj">
     {#each full as {theta, phi}}
@@ -88,9 +91,12 @@
         <circle class="point" r='0.1' cx={phi+360} cy={theta} fill='green'/>
     {/each}
 </g>
+{/if}
 <g class="areas">
-    {#each renderComponents as component}
-        <polygon points={component.map(({theta, phi})=>`${phi},${theta}`).join(' ')} fill='red' fill-opacity='0.1' stroke='none'/>
-        <polygon points={component.map(({theta, phi})=>`${phi+360},${theta}`).join(' ')} fill='red' fill-opacity='0.1' stroke='none'/>
+    {#each renderComponents as component, i}
+        {#if !singleTimeOrbit || (i%4 === 0) || (i%4 === 3)}
+            <polygon points={component.map(({theta, phi})=>`${phi},${theta}`).join(' ')} fill='red' fill-opacity='0.1' stroke='none'/>
+            <polygon points={component.map(({theta, phi})=>`${phi+360},${theta}`).join(' ')} fill='red' fill-opacity='0.1' stroke='none'/>
+        {/if}
     {/each}
 </g>

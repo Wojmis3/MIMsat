@@ -1,11 +1,8 @@
 <script lang="ts">
-    export let sat: Station | {T: string, n: number, start: number};
+    export let sat: Satellite | {T: string, n: number, start: number, width: number};
     export let adding = false;
 
 </script>
-{#if adding}
-{sat.id}
-{/if}
 Time:
         <input
             type="time"
@@ -33,3 +30,11 @@ Time:
             id="newSatstart"
             bind:value={sat.start}
         />{sat.start}
+        <input
+        type="range"
+        min="0"
+        max="1000"
+        name="newSatWidth"
+        id="newSatWidth"
+        bind:value={sat.width}
+    />{sat.width}

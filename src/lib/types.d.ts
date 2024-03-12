@@ -3,6 +3,7 @@ type Satellite = {
     T: string;
     n: number;
     h: number;
+    width: number;
     start: number;
 };
 type Station = {

@@ -46,7 +46,7 @@
 {#if minuteDelay > 0}
     <g class="delay circle">
         {#each delayCircle.map(polarToEarth) as {theta, phi}}
-            <circle class="point" r='1' cx={phi} cy={theta} fill='red'/>
+            <circle class="point" r='0.5' cx={phi} cy={theta} fill='blue'/>
         {/each}
     </g>
 {/if}

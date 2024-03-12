@@ -4,25 +4,22 @@ import SatCover from "./satCover.svelte";
 	import StatCover from "./statCover.svelte";
 
  
-    export let satellites: {id: number, T: string, n: number, h: number, start: number}[] = [];
+    export let satellites: Satellite[] = [];
     export let stations: {id: number, theta: number, phi: number}[] = [];
-    export let newSat: {T: string, n: number, start: number};
+    export let newSat: {T: string, n: number, start: number, width: number};
     export let previewSat: boolean;
     export let newStation: {id: number, theta: number, phi: number};
     export let previewStation: boolean;
-    let width = 300
-    let minuteDelay: number = 0;
-    let stationN: number = 16;
-    let singleOrbit: boolean = true;
-
+    export let width = 1000
+    export let minuteDelay: number = 0;
+    export let stationN: number = 16;
+    export let singleOrbit: boolean = true;
+    export let overrideWidths:boolean=false;
+    export let singleTimeOrbit:boolean=false;
+    export let showDots:boolean=true;
 </script>
 
-<div class='inputs'>
-    Delay: <input type='number' bind:value={minuteDelay} min='0' max='1000' step='1' />
-    N: <input type='number' bind:value={stationN} min='7' max='16' step='1' />
-    Width: <input type='number' bind:value={width} min='1' max='10000' step='1' />
-    Single orbit: <input type='checkbox' bind:checked={singleOrbit} />
-</div>
+
 <svg width="3600" height="1800" viewBox="0 0 360 180">
     <g transform="translate(180, 90)">
         <Countries />
@@ -31,10 +28,10 @@ import SatCover from "./satCover.svelte";
         <line x1="-180" y1="-90" x2="-180" y2="90" stroke="black" />
         <line x1="180" y1="-90" x2="180" y2="90" stroke="black" />
         {#each satellites as sat}
-        <SatCover {sat} {width} {singleOrbit}/>
+        <SatCover {sat} width={overrideWidths ? width : sat.width} {singleOrbit} {singleTimeOrbit} {showDots}/>
         {/each}
         {#if previewSat}
-        <SatCover sat={newSat} {width} {singleOrbit}/>
+        <SatCover sat={newSat} width={overrideWidths ? width : newSat.width} {singleOrbit} {singleTimeOrbit} {showDots}/>
         {/if}
         {#each stations as station}
         <StatCover {station} {minuteDelay} {stationN} />
