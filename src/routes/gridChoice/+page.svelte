@@ -31,7 +31,7 @@
         }
         return {points, coverMaps, pointWidths};
     }
-    let r: number = 0.05;
+    let r: number = 0.03;
     let R: number = 0.23;
     $: stationSpots = getMiddles(r, R);
     let active: number[] = [];
