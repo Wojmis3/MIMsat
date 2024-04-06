@@ -17,6 +17,7 @@ import SatCover from "./satCover.svelte";
     export let overrideWidths:boolean=false;
     export let singleTimeOrbit:boolean=false;
     export let showDots:boolean=true;
+    export let realOrbit:boolean=false;
 </script>
 
 
@@ -28,10 +29,10 @@ import SatCover from "./satCover.svelte";
         <line x1="-180" y1="-90" x2="-180" y2="90" stroke="black" />
         <line x1="180" y1="-90" x2="180" y2="90" stroke="black" />
         {#each satellites as sat}
-        <SatCover {sat} width={overrideWidths ? width : sat.width} {singleOrbit} {singleTimeOrbit} {showDots}/>
+        <SatCover {sat} width={overrideWidths ? width : sat.width} {singleOrbit} {singleTimeOrbit} {showDots} {realOrbit}/>
         {/each}
         {#if previewSat}
-        <SatCover sat={newSat} width={overrideWidths ? width : newSat.width} {singleOrbit} {singleTimeOrbit} {showDots}/>
+        <SatCover sat={newSat} width={overrideWidths ? width : newSat.width} {singleOrbit} {singleTimeOrbit} {showDots} {realOrbit}/>
         {/if}
         {#each stations as station}
         <StatCover {station} {minuteDelay} {stationN} />

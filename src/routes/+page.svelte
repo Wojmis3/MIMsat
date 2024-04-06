@@ -34,6 +34,7 @@
     let overrideWidths:boolean=false;
     let singleTimeOrbit:boolean=false;
     let showDots:boolean=true;
+    let realOrbit:boolean=false;
 </script>
 
 <div class="sat">
@@ -92,23 +93,44 @@
                 </ul>
 </div>
 <div class='inputs'>
-    Delay: <input type='number' bind:value={minuteDelay} min='0' max='1000' step='1' />
-    N: <input type='number' bind:value={stationN} min='7' max='16' step='1' />
-    Width: <input type='number' bind:value={width} min='1' max='10000' step='1' />
-    Override Individual Widths: <input type='checkbox' bind:checked={overrideWidths} />
-    Single orbit: <input type='checkbox' bind:checked={singleOrbit} />
-    Single time orbit: <input type='checkbox' bind:checked={singleTimeOrbit} />
-    Show Dots: <input type='checkbox' bind:checked={showDots} />
+    <div>
+        Delay: <input type='number' bind:value={minuteDelay} min='0' max='1000' step='1' />
+    </div>
+    <div>
+        N: <input type='number' bind:value={stationN} min='7' max='16' step='1' />
+    </div>
+    <div>
+        Width: <input type='number' bind:value={width} min='1' max='10000' step='1' />
+    </div>
+    <div>
+        Override Individual Widths: <input type='checkbox' bind:checked={overrideWidths} />
+    </div>
+    <div>
+        Single orbit: <input type='checkbox' bind:checked={singleOrbit} />
+    </div>
+    <div>
+        Single time orbit: <input type='checkbox' bind:checked={singleTimeOrbit} />
+    </div>
+    <div>
+        Show Dots: <input type='checkbox' bind:checked={showDots} />
+    </div>
+    <div>
+        Real Orbit: <input type='checkbox' bind:checked={realOrbit} />
+    </div>
 </div>
 <Presetter bind:satellites bind:stations bind:delay={minuteDelay} bind:n={stationN} />
 <Map {satellites} {stations} {previewSat} {previewStation} {newSat} {newStation} {width}
 {minuteDelay}
 {stationN}
 {singleOrbit}
-{overrideWidths} {singleTimeOrbit} {showDots}/>
+{overrideWidths} {singleTimeOrbit} {showDots} {realOrbit}/>
 
 <style>
     ul {
+        display:flex;
+        flex-direction:column;
+    }
+    .inputs {
         display:flex;
         flex-direction:column;
     }

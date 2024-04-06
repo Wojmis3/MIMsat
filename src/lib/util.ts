@@ -46,5 +46,5 @@ export function baseTraj({theta, phi}:any, d:number, n:number){
         return cartesianToPolar(rotateZ(polarToCartesian(theta2, 0), phi+i*omega*mult))
     })
 }
-
+export const maxLats = [37.9, 54.7, 64, 69.9, 74, 77, 79.3, 81, 82.3, 83.4].map(e=>e*Math.PI/180)
 export {cartesianToPolar, polarToCartesian, rotateX, rotateY, rotateZ}
