@@ -16,20 +16,19 @@
     //Actually, omega per time step.
     const omega = -2*Math.PI/timeSteps
     $: startAngle = Math.PI*sat.start/180
-    $: angleWidth = width/(R*2*Math.PI)
+    $: angleWidth = width/(R)
     
     //This is the angle made so that orbit is perpendicular to the pictures
     let adjustAngle = 0
     let stepArray = [...Array(orbitSteps).keys()]
-
     $: orbitSteps = Math.floor(timeSteps/sat.n)
     $: baseLeft = [...Array(orbitSteps).keys()].map((i:number)=>{
-        let theta = Math.PI/2 - angleWidth
+        let theta = Math.PI/2 - angleWidth/2
         let phi = 2*Math.PI*i/orbitSteps
         return rotateX(polarToCartesian(theta, phi), Math.PI/2+maxLatRot)
     })
     $: baseRight = [...Array(orbitSteps).keys()].map((i:number)=>{
-        let theta = Math.PI/2 - angleWidth
+        let theta = Math.PI/2 - angleWidth/2
         let phi = -2*Math.PI*i/orbitSteps
         return rotateX(polarToCartesian(theta, phi), -Math.PI/2+maxLatRot)
     })
@@ -79,7 +78,6 @@
      let renderComponents:any[]= []
     $: {startAngle
         let length = singleOrbit ? orbitSteps : timeSteps
-        
         full = makeFullInDeg(realOrbit, base, length)
         fullLeft = makeFullInDeg(realOrbit, baseLeft, length)
         fullRight = makeFullInDeg(realOrbit, baseRight, length, -2*Math.PI)
